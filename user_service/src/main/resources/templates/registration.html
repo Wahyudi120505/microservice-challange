@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Microservice Challenge</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 150px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #052d3d;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2190e3;
+        }
+
+        p {
+            text-align: center;
+            font-size: 16px;
+            color: #333333;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 12px;
+            text-align: center;
+            background-color: #fc7318;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777777;
+            margin-top: 30px;
+        }
+
+        .social-icons img {
+            width: 32px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <img src="../static/image/Logo.png" alt="Logo" class="logo" />
+
+        <!-- Greeting -->
+        <h1>Welcome</h1>
+        <h2 th:text="${name}">User</h2>
+
+        <!-- Message -->
+        <p>
+            Thanks for signing up! We'll keep you updated with new products, posts, promos, and events.
+        </p>
+
+        <!-- Button -->
+        <a href="#" class="btn">Login</a>
+
+        <!-- Social Icons -->
+        <div class="social-icons" style="text-align:center; margin-top: 20px;">
+            <a href="https://www.facebook.com" target="_blank">
+                <img src="../static/image/facebook2x.png" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <img src="../static/image/instagram2x.png" alt="Instagram">
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            Microservice Challenge - Lorem ipsum dolor sit amet.
+        </div>
+    </div>
+</body>
+</html>

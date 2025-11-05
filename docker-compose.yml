@@ -1,0 +1,67 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  user-service:
+    build:
+      context: ./user_service
+      args:
+        SERVICE_PORT: ${USER_SERVICE_PORT}
+    ports:
+      - "${USER_SERVICE_PORT}:${USER_SERVICE_PORT}"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+      - SPRING_DATASOURCE_USERNAME=${DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - SERVER_PORT=${USER_SERVICE_PORT}
+      - JWT_SECRET=${JWT_SECRET}
+      - SENDGRID_API_KEY=${SENDGRID_API_KEY}
+      - SENDGRID_FROM_EMAIL=${SENDGRID_FROM_EMAIL}
+      - SENDGRID_FROM_NAME=${SENDGRID_FROM_NAME}
+    depends_on:
+      - postgres
+
+  product-service:
+    build:
+      context: ./product_service
+      args:
+        SERVICE_PORT: ${PRODUCT_SERVICE_PORT}
+    ports:
+      - "${PRODUCT_SERVICE_PORT}:${PRODUCT_SERVICE_PORT}"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+      - SPRING_DATASOURCE_USERNAME=${DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - SERVER_PORT=${PRODUCT_SERVICE_PORT}
+      - JWT_SECRET=${JWT_SECRET}
+    depends_on:
+      - postgres
+
+  cart-service:
+    build:
+      context: ./cart_service
+      args:
+        SERVICE_PORT: ${CART_SERVICE_PORT}
+    ports:
+      - "${CART_SERVICE_PORT}:${CART_SERVICE_PORT}"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+      - SPRING_DATASOURCE_USERNAME=${DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - SERVER_PORT=${CART_SERVICE_PORT}
+      - JWT_SECRET=${JWT_SECRET}
+      - SPRING_CLOUD_COMPATIBILITY_VERIFIER_ENABLED=false
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

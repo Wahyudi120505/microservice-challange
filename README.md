@@ -19,7 +19,7 @@ Masing-masing service dibuat terpisah untuk memudahkan pengelolaan, pengembangan
 - 🛒 **Manajemen Cart** → Tambah, edit, hapus item keranjang
 - 📖 **Swagger/OpenAPI Documentation**
 - 🐳 **Docker Compose** → Containerization
-- 🧪 **Unit Test dengan MockitoBean**
+- 🧪 **Unit Test dengan Mockito**
 
 ---
 
@@ -28,8 +28,8 @@ Masing-masing service dibuat terpisah untuk memudahkan pengelolaan, pengembangan
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/username/Microservice-Development-Challenge.git
-cd Microservice-Development-Challenge
+git clone https://github.com/username/microservice-challenge.git
+cd microservice-challenge
 ```
 
 ### 2. Jalankan dengan Docker Compose
@@ -104,7 +104,7 @@ docker-compose up --build
 ## 🧪 Unit Testing
 
 - Menggunakan **JUnit & MockitoBean**
-- Service di-mock menggunakan `@MockitoBean`
+- Service di-mock menggunakan `@Mockito`
 
 ---
 
@@ -112,9 +112,9 @@ docker-compose up --build
 
 Swagger UI tersedia di:
 
-- **User Service** → http://localhost:8084/swagger-ui/index.html#/
-- **Product Service** → http://localhost:8085/swagger-ui/index.html#/
-- **Cart Service** → http://localhost:8086/swagger-ui/index.html#/
+- **User Service** → http://localhost:8080/swagger-ui/index.html#/
+- **Product Service** → http://localhost:8081/swagger-ui/index.html#/
+- **Cart Service** → http://localhost:8083/swagger-ui/index.html#/
 
 ---
 
